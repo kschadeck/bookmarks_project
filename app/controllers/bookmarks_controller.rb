@@ -1,6 +1,8 @@
 class BookmarksController < ApplicationController
   # GET /bookmarks
   # GET /bookmarks.xml
+  caches_action :layout => false
+  
   def index
     @bookmarks = Bookmark.all
 
