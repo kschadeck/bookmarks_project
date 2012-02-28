@@ -1,5 +1,13 @@
 BookmarksProject::Application.routes.draw do
   resources :bookmarks
+  #GET    /bookmarks
+  #POST   /bookmarks
+  #GET    /bookmarks/new
+  #GET    /bookmarks/:id/edit
+  #GET    /bookmarks/:id
+  #PUT    /bookmarks/:id
+ # DELETE /bookmarks/:id
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

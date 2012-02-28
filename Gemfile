@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.11'
-gem 'sqlite3', '1.3.3', :group => :development
-gem 'rspec-rails', '2.6.1'
+gem 'sqlite3', '1.3.3'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
 
@@ -18,11 +17,6 @@ group :test do
   gem 'spork', '0.9.0.rc8'
   gem 'factory_girl_rails', '1.0'
 end
-
-group :development, :test do
-  gem 'web-app-theme', '>= 0.6.2'
-end
-  
 
 # Use unicorn as the web server
 # gem 'unicorn'
