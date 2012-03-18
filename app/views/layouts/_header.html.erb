@@ -1,11 +1,10 @@
 <header>
     <div id="header">
-      <h1><a href="/">Bookmarks</a></h1>
+      <h1><%= link_to "Bookmarks", bookmarks_path %></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
-          <li><a href="#"><%= t("web-app-theme.profile", :default => "Bookmarks") %></a></li>
-          <li><a href="#"><%= t("web-app-theme.settings", :default => "Home") %></a></li>
-          <li><a href="#" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
+          <li><%= link_to "Bookmarks", bookmarks_path %></li>
+          <li><%= link_to "New Bookmark", new_bookmark_path %></li>
         </ul>
       </div>
       <div id="main-navigation">

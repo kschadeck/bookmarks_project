@@ -1,5 +1,6 @@
 BookmarksProject::Application.routes.draw do
   resources :bookmarks
+  
   #GET    /bookmarks
   #POST   /bookmarks
   #GET    /bookmarks/new
