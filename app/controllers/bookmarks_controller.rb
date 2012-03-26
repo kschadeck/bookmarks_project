@@ -1,6 +1,5 @@
 class BookmarksController < ApplicationController
-  # GET /bookmarks
-  # GET /bookmarks.xml
+
   caches_action :layout => false
   
   def index
@@ -12,8 +11,6 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # GET /bookmarks/1
-  # GET /bookmarks/1.xml
   def show
     @bookmark = Bookmark.find(params[:id])
 
@@ -23,24 +20,19 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # GET /bookmarks/new
-  # GET /bookmarks/new.xml
   def new
     @bookmark = Bookmark.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html 
       format.xml  { render :xml => @bookmark }
     end
   end
 
-  # GET /bookmarks/1/edit
   def edit
     @bookmark = Bookmark.find(params[:id])
   end
 
-  # POST /bookmarks
-  # POST /bookmarks.xml
   def create
     @bookmark = Bookmark.new(params[:bookmark])
 
@@ -71,8 +63,6 @@ class BookmarksController < ApplicationController
     end
   end
 
-  # DELETE /bookmarks/1
-  # DELETE /bookmarks/1.xml
   def destroy
     @bookmark = Bookmark.find(params[:id])
     @bookmark.destroy

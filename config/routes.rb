@@ -1,5 +1,16 @@
 BookmarksProject::Application.routes.draw do
+  #get "users/index"
+  #
+  #get "users/show"
+  #
+  #get "users/new"
+  #
+  #get "users/edit"
+  #
+  #get "users/create"
+  resources :users
   resources :bookmarks
+  match '/help',    :to => 'users#help'
   
   #GET    /bookmarks
   #POST   /bookmarks
