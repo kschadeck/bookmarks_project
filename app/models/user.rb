@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end
+  def feed
+     Bookmark.where("user_id = ?")
+  end
 
   class << self
     def User.authenticate(email, submitted_password)

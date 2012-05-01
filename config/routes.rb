@@ -1,10 +1,14 @@
 BookmarksProject::Application.routes.draw do
 
-  resources :users
-  resources :sessions, :only => [:new, :create, :destroy]
-  resources :bookmarks
+    resources :sessions, :only => [:new, :create, :destroy]
+    resources :users
+    resources :bookmarks
 
   root :to => 'sessions#new'
+  
+  #Session routes
+  match '/signin', :to => 'sessions#new' #signin_path
+  match '/signout', :to => 'sessions#destroy', :via => :delete #signout_path
   
   #Users routes
   match '/index',     :to => 'users#index'
@@ -13,9 +17,6 @@ BookmarksProject::Application.routes.draw do
   match '/edit',      :to => 'users#edit'
   match '/help',      :to => 'users#help'
   
-  #Session routes
-  match '/signin', :to => 'sessions#new' #signin_path
-  match '/signout', :to => 'sessions#destroy', :via => :delete #signout_path
   
   #Bookmarks routes
   match '/show',  :to => 'bookmarks#show' #bookmark_path(@user_id)

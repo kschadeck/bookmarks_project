@@ -25,11 +25,10 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    #@user = User.find(params[:user_id])
-    bookmark = current_user.bookmarks.build(params[:bookmark])
-    if bookmark.valid?
-      @user.save
-      redirect_to root_path, :flash => {:success => "Bookmark created!"}
+   #@user = User.find(params[:user_id])
+    @bookmark = current_user.bookmarks.build(params[:bookmark])
+    if @bookmark.save
+          redirect_to @current_user, :flash => {:success => "Bookmark created!"}
     else
       render "users/show"
     end

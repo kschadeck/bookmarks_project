@@ -1,2 +1,0 @@
-class SharedController < ApplicationController
-end
