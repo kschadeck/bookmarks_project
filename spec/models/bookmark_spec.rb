@@ -5,9 +5,9 @@
 #  id         :integer         not null, primary key
 #  name       :string(255)
 #  url        :string(255)
-#  date       :date
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 require 'spec_helper'

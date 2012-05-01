@@ -1,0 +1,40 @@
+<!--tr>
+    <td class="bookmark">
+        <div>
+            URL : <a href="<%= bookmark.url %>"><%= bookmark.url %></a>
+        </div>
+        <div>
+            Name: <%= bookmark.name %>
+        </div>
+        <span>
+           Posted: <strong><%= bookmark.created_at) %>
+        </span>
+    </td>
+        <% user = bookmark.user rescue User.find(bookmark.user_id)%>
+        <% if current_user?(user) %>
+    <td>
+       <%= link_to "delete", bookmark, :method => :delete,
+                                       :confirmation => "You sure",
+                                       :title => bookmark.name %>
+    </td>
+        <% end %>
+</tr-->
+<tr>
+	<th>Name |</th>
+	<th>Url  |</th>
+	<th>Date created|</th>
+	<th>Edit</th>
+	<th>Delete</th>
+	<th><%= link_to "New Bookmark", users_add_bookmark_path %></th>
+</tr>
+          <% @user.bookmarks.each do |bookmark| %>
+<tr>
+    <td><%= bookmark.name %></td>
+    <td><%= link_to bookmark.url, bookmark.url %></td>
+	<td><%= bookmark.created_at %></td>
+	<td><%= link_to 'Edit', edit_bookmark_path(bookmark) %></td>
+	<td><%= link_to 'Delete', bookmark, :confirm => 'Are you sure?', :method => :delete %></td>
+	<td><input type="hidden" name="user_id" value="<%= @user.id %>">
+	</td>
+</tr>
+<% end %>

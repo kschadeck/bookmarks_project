@@ -1,12 +1,19 @@
 <header>
     <div id="header">
-      <h1><%= link_to "pal.atab.le", users_path %></h1>
+      <h1><%= link_to "pal.atab.le", root_path %></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
-          <li><%= link_to "Login", users_path %></li>
-          <li><%= link_to "Sign Up", new_user_path %></li>
-          <li><%= link_to "Help", help_path %></li>
-          <li><%= link_to "Search Box", '#' %></li>
+          <% if signed_in? %>
+            <li><%= link_to "Home", current_user%></li>
+            <li><%= link_to "Profile", edit_user_path(current_user) %></li>
+            <li><%= link_to "Logout", signout_path, :method => :delete %></li>
+            <li><%= link_to "Help", help_path %></li>
+            <li><%= link_to "Search...", '#' %></li>
+          <% else %>
+              <li><%= link_to "Sign Up", signup_path %></li>
+              <li><%= link_to "Help", help_path %></li>
+              <li><%= link_to "Search...", '#' %></li>
+          <% end %>
         </ul>
       </div>
       <div id="main-navigation">

@@ -1,17 +1,27 @@
 BookmarksProject::Application.routes.draw do
-  #get "users/index"
-  #
-  #get "users/show"
-  #
-  #get "users/new"
-  #
-  #get "users/edit"
-  #
-  #get "users/create"
-  resources :users
+  resources :users, :only  => [:new, :create, :index, :show]
+  resources :sessions, :only => [:new, :create, :destroy]
   resources :bookmarks
-  match '/help',    :to => 'users#help'
+
+  #root :to => 'users#index'
+  root :to => 'sessions#new'
+
   
+  match '/help',     :to => 'users#help'
+  match '/show',     :to => 'users#show'
+  
+  match '/signup',   :to => 'users#new' #signup_path
+  match '/signin',   :to => 'sessions#new' #signin_path
+  match '/signout', :to => 'sessions#destroy', :via => :delete #signout_path
+  match '/profile',  :to => "users#edit"
+  
+  match '/show',  :to => 'bookmarks#show' #bookmark_path(@user_id)
+  match '/index', :to => 'bookmarks#index' #bookmarks_path
+  
+  post "users/add_bookmark"
+  #match '/users/:user_id/bookmarks/new', :to => user_new_bookmark_path, :controller => 'bookmarks', :action => 'new' :conditions => {:method => :get} 
+  
+#create = sessions_path
   #GET    /bookmarks
   #POST   /bookmarks
   #GET    /bookmarks/new

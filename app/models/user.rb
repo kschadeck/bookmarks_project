@@ -9,9 +9,12 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  encrypted_password :string(255)
+#  salt               :string(255)
 #
 
 class User < ActiveRecord::Base
+  has_many :bookmarks
+  
   attr_accessor :password
   
   attr_accessible :username, :name, :email, :password, :password_confirmation
@@ -19,7 +22,8 @@ class User < ActiveRecord::Base
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/
   
   validates :username, :presence => true,
-            :uniqueness => { :case_sensitive => false }
+            :uniqueness => { :case_sensitive => false },
+            :length => {:maximum =>100}
   validates :name, :presence => true,
             :length => { :within => 2..75 }
   validates :email, :presence => true,
@@ -34,10 +38,16 @@ class User < ActiveRecord::Base
     encrypted_password == encrypt(submitted_password)
   end
 
-  def self.authenticate(email, submitted_password)
-    user = find_by_email(email)
-    return nil  if user.nil?
-    return user if user.has_password?(submitted_password)
+  class << self
+    def User.authenticate(email, submitted_password)
+      user = find_by_email(email)
+      return nil  if user.nil?
+      return user if user.has_password?(submitted_password)
+    end
+    def User.authenticate_with_salt(id, cookie_salt)
+      user = find_by_id(id)
+      (user && user.salt == cookie_salt) ? user : nil
+    end
   end
 
   private

@@ -1,7 +1,9 @@
-<%= form_for(@bookmark) do |f| %>
+<% form_for(:bookmark, :url => users_add_bird_path) do |f| %>
+<!--%= form_for(@bookmark) do |f| %>-->
   <% if @bookmark.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+      <h2><%= pluralize(@bookmark.errors.count, "error") %>
+        prohibited this bookmark from being saved:</h2>
 
       <ul>
       <% @bookmark.errors.full_messages.each do |msg| %>
@@ -18,10 +20,6 @@
   <div class="field">
     <%= f.label :url %><br />
     <%= f.text_field :url %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
   </div>
   <div class="actions">
     <%= f.submit %>

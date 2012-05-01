@@ -4,6 +4,7 @@ class BookmarksController < ApplicationController
   
   def index
     @bookmarks = Bookmark.all
+    @title = "Bookmarks"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class BookmarksController < ApplicationController
 
   def show
     @bookmark = Bookmark.find(params[:id])
-
+    @title = @bookmark.name
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @bookmark }
@@ -22,6 +23,7 @@ class BookmarksController < ApplicationController
 
   def new
     @bookmark = Bookmark.new
+    @title = "New Bookmark"
 
     respond_to do |format|
       format.html 
@@ -31,6 +33,7 @@ class BookmarksController < ApplicationController
 
   def edit
     @bookmark = Bookmark.find(params[:id])
+    @title = "Edit Bookmarks"
   end
 
   def create
