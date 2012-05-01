@@ -1,21 +1,16 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Username:</b>
-  <%= @user.username %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-<p>
-  <b><%= link_to 'Change your password?', edit_user_path(@user) %></b>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %>
+<table>
+    <tr>
+        <td>
+            <% if @user.bookmarks.empty? %>
+              <h4><i><strong>You haven't created any bookmarks yet. Get on it!</</strong></i></h4>
+            <% else %>
+                <table>
+                    <h2 id='h2_header'>My Bookmarks</h2>
+                        <%= render @bookmarks %>
+                </table>
+                <%= will_paginate @bookmarks %>
+            <% end %>
+        </td>
+    </tr>
+</table>
+<%= link_to 'Create a New Bookmark', new_bookmark_path(@current_user) %>

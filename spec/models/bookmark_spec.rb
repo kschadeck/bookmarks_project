@@ -5,9 +5,9 @@
 #  id         :integer         not null, primary key
 #  name       :string(255)
 #  url        :string(255)
-#  date       :date
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 require 'spec_helper'
@@ -48,5 +48,19 @@ describe Bookmark do
       :url => "www.websitename.com"
     }
   end
-  
+  describe "user associations" do
+
+    before(:each) do
+      @bookmark = @user.bookmarks.create(@attr)
+    end
+ 
+    it "should have a user attribute" do
+        @bookmark.should respond_to(:user)
+    end
+
+    it "should have the right associated user" do
+        @bookmark.user_id.should == @user.id
+        @bookmark.user.should == @user
+    end
+  end
 end

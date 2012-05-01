@@ -1,7 +1,8 @@
 <%= form_for(@bookmark) do |f| %>
   <% if @bookmark.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@bookmark.errors.count, "error") %> prohibited this bookmark from being saved:</h2>
+      <h2><%= pluralize(@bookmark.errors.count, "error") %>
+        prohibited this bookmark from being saved:</h2>
 
       <ul>
       <% @bookmark.errors.full_messages.each do |msg| %>
@@ -20,8 +21,7 @@
     <%= f.text_field :url %>
   </div>
   <div class="field">
-    <%= f.label :date %><br />
-    <%= f.date_select :date %>
+    <input type="hidden" name="bookmark_user_id" value="<%= @bookmark.user_id %>">
   </div>
   <div class="actions">
     <%= f.submit %>

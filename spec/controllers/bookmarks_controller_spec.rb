@@ -21,7 +21,7 @@ describe BookmarksController do
     it "should have the right title" do
       get :index
       response.should have_selector("title",
-                    :content => "Bookmarks")
+                    :content => "Bookmark")
     end   
     it "assigns all bookmarks as @bookmarks" do
       bookmark = Bookmark.create! valid_attributes

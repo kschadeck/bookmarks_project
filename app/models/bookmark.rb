@@ -5,15 +5,18 @@
 #  id         :integer         not null, primary key
 #  name       :string(255)
 #  url        :string(255)
-#  date       :date
 #  created_at :datetime
 #  updated_at :datetime
+#  user_id    :integer
 #
 
 class Bookmark < ActiveRecord::Base
-    has_many :bookmarks
+    belongs_to :user
+    
+    attr_accessible :name, :url
   
-  validates :name, :url, :presence => true
-  validates :url, :length => { :minimum => 10}
-  validates :name, :length => { :maximum => 100 }
+  validates :name, :url, :presence => true,
+                    :length =>  { :maximum => 100 }
+  validates :url, :presence => true,
+                    :length => { :minimum => 10}
 end

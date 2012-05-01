@@ -1,17 +1,36 @@
 BookmarksProject::Application.routes.draw do
-  #get "users/index"
-  #
-  #get "users/show"
-  #
-  #get "users/new"
-  #
-  #get "users/edit"
-  #
-  #get "users/create"
+
   resources :users
+  resources :sessions, :only => [:new, :create, :destroy]
   resources :bookmarks
-  match '/help',    :to => 'users#help'
+
+  root :to => 'sessions#new'
   
+  #Users routes
+  match '/index',     :to => 'users#index'
+  match '/show',      :to => 'users#show'
+  match '/signup',    :to => 'users#new'  #signup_path
+  match '/edit',      :to => 'users#edit'
+  match '/help',      :to => 'users#help'
+  
+  #Session routes
+  match '/signin', :to => 'sessions#new' #signin_path
+  match '/signout', :to => 'sessions#destroy', :via => :delete #signout_path
+  
+  #Bookmarks routes
+  match '/show',  :to => 'bookmarks#show' #bookmark_path(@user_id)
+  match '/index', :to => 'bookmarks#index' #bookmarks_path
+  
+  #User Bookmark routes
+  match  ':bookmarks/:new/@current_user', :to => 'bookmarks#new' #new_bookmark_path
+# match ':controller(/:action(/:id(.:format)))'
+ #match 'bookmarks/new/user_id', :to => 'bookmarks#new' 
+  #user_new_bookmark '/users/:user_id/bookmarks/new', :controller => 'bookmarks', :action => 'new', :conditions => {:method => 'get'}
+  #match  ':bookmarks/:new/:user_id', :to => '/users/:user_id/bookmarks/new' #user_new_bookmark 
+
+end 
+  
+#create = sessions_path
   #GET    /bookmarks
   #POST   /bookmarks
   #GET    /bookmarks/new
@@ -77,4 +96,3 @@ BookmarksProject::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
-end
