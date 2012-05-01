@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     if signed_in?
       @bookmarks = @user.bookmarks.paginate(:page => params[:page])
       @bookmark = Bookmark.new
+      @feed_items = current_user.feed.paginate(:page => params[:page])
     end
   end
 
@@ -61,9 +62,7 @@ class UsersController < ApplicationController
   
   private
   
-  def authenticate
-      deny_access unless signed_in?
-  end
+ 
   
   def correct_user
     @user =User.find(params[:id])

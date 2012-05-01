@@ -1,0 +1,31 @@
+changes:
+sample_data.rake line 14 from  username = Faker::Name.name to username = Faker::Name.name
+sample_data.rake line 16 from   email = "example-#{n+1}@aol.com" to   email = "example-#{n+1}@aolunique.com"
+app/controllers/bookmark_controller.rb added:
+line 2   before_filter :authenticate
+    before_filter :authorized_user, :only => :destroy
+   
+line 57  private
+        def authorized_user
+            @bookmark = Bookmark.find(params[:id])
+            redirect_to root_path unless current_user?(@bookmark.user)
+        end
+        
+app/controllers/user_controllers
+line 64 move  def authenticate
+                    deny_access unless signed_in?
+              end
+to app/helpers/sessions_helper.rb line 38
+
+line 18 added   @feed_items = current_user.feed.paginate(:page => params[:page])
+added and empty file app/controllers/shared_controller.rb
+
+app/models/bookmark.rb added at line 23
+   validates :user_id, :presence => true                     
+    default_scope :order => "bookmarks.created_at DESC"
+app/models/user.rb
+line 23 deleted comment and ##signs and indention
+app/views/ _bookmark.html changed the indentention
+I recomend you change some of the words and layout of the app/views so that we don't get in trouble
+
+app/views/shared/user_info.html.erb change the css class names

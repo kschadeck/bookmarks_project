@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+    before_filter :authenticate
+    before_filter :authorized_user, :only => :destroy
   
   caches_action :layout => false
   
@@ -64,5 +66,10 @@ class BookmarksController < ApplicationController
     redirect_to current_user, :flash => {:success => "Bookmark deleted!"}
     end
 
-  private
+   private
+        def authorized_user
+            @bookmark = Bookmark.find(params[:id])
+            redirect_to root_path unless current_user?(@bookmark.user)
+        end
+  
 end

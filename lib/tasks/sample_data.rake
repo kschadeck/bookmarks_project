@@ -11,9 +11,9 @@ namespace :db do
             :password_confirmation => "foosbar")
 
         99.times do |n|
-            username = Faker::Name.username
+            username = Faker::Name.name
             name = Faker::Name.name
-            email = "example-#{n+1}@aol.com"
+            email = "example-#{n+1}@aolunique.com"
             password = "password"
             User.create!(:username => username,
                          :name => name,

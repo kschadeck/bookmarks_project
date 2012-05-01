@@ -19,4 +19,8 @@ class Bookmark < ActiveRecord::Base
                     :length =>  { :maximum => 100 }
   validates :url, :presence => true,
                     :length => { :minimum => 10}
+                    
+    validates :user_id, :presence => true
+                     
+    default_scope :order => "bookmarks.created_at DESC"
 end
