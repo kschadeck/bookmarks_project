@@ -17,6 +17,9 @@ class UsersController < ApplicationController
       @bookmark = Bookmark.new
       @feed_items = current_user.feed.paginate(:page => params[:page])
     end
+    unless signed_in?
+      redirect_to signin_path
+    end
   end
 
   def new
@@ -61,9 +64,7 @@ class UsersController < ApplicationController
   end
   
   private
-  
- 
-  
+
   def correct_user
     @user =User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)

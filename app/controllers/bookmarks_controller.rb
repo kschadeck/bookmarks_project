@@ -25,7 +25,6 @@ class BookmarksController < ApplicationController
   end
 
   def create
-   #@user = User.find(params[:user_id])
     @bookmark = current_user.bookmarks.build(params[:bookmark])
     if @bookmark.save
           redirect_to @current_user, :flash => {:success => "Bookmark created!"}
@@ -33,19 +32,7 @@ class BookmarksController < ApplicationController
       render "users/show"
     end
   end
-  #def add_bookmark
-  #  @user = User.find(params[:user_id])
-  #  bookmark = @user.bookmarks.build(param[:bookmark])
-  #  if  (bookmark.valid?)
-  #    @user.save
-  #    redirect_to @user
-  #  else
-  #    @errors = bookmark.errors
-  #    render 'show'
-  #  end
-  #end
-  # PUT /bookmarks/1
-  # PUT /bookmarks/1.xml
+
   def update
     @bookmark = Bookmark.find(params[:id])
 

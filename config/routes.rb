@@ -23,11 +23,9 @@ BookmarksProject::Application.routes.draw do
   match '/index', :to => 'bookmarks#index' #bookmarks_path
   
   #User Bookmark routes
+  # match ':controller(/:action(/:id(.:format)))'
   match  ':bookmarks/:new/@current_user', :to => 'bookmarks#new' #new_bookmark_path
-# match ':controller(/:action(/:id(.:format)))'
- #match 'bookmarks/new/user_id', :to => 'bookmarks#new' 
-  #user_new_bookmark '/users/:user_id/bookmarks/new', :controller => 'bookmarks', :action => 'new', :conditions => {:method => 'get'}
-  #match  ':bookmarks/:new/:user_id', :to => '/users/:user_id/bookmarks/new' #user_new_bookmark 
+
 
 end 
   
